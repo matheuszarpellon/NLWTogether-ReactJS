@@ -1,4 +1,6 @@
 #page-room {
+  min-height: 100vh;
+  
   header {
     padding: 1.5rem;
     border-bottom: 0.0625rem solid #e2e2e2;
@@ -126,9 +128,6 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-
-      &.dark{
-        background: #333;
-      }
-    }}
+    }
+  }
 }

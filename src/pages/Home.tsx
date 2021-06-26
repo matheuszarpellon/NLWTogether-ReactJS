@@ -20,23 +20,22 @@ export function Home() {
   const [roomCode, setRoomCode] = useState('')
   const { theme, toggleTheme } = useTheme()
 
-  async function handleCreateRoom(event:FormEvent) {
-    
+  async function handleCreateRoom(event: FormEvent) {
     event.preventDefault()
 
     if (!user) {
       await signInWithGoogle()
     }
 
-    if(newRoom.trim() === '') {
-      return;
+    if (newRoom.trim() === '') {
+      return
     }
 
     const roomRef = database.ref('rooms')
 
     const firebaseRoom = await roomRef.push({
       title: newRoom,
-      authorId: user?.id,
+      authorId: user?.id
     })
 
     history.push(`/rooms/${firebaseRoom.key}`)
@@ -75,23 +74,28 @@ export function Home() {
         <p>Tire as dúvidas da sua audiência em tempo-real</p>
       </aside>
       <main>
+        <div className="status">
+        {theme === 'light' ? (
+          <Button onClick={toggleTheme}>Dark</Button>
+          ) : (
+            <Button onClick={toggleTheme}>Light</Button>
+            )}
+        </div>
         <div className="main-content">
-          { theme === 'light' 
-            ? <Button onClick={toggleTheme}>Dark</Button>
-            : <Button onClick={toggleTheme}>Light</Button>}
           {theme === 'light' ? (
             <img src={logoImg} alt="Letmeask" />
           ) : (
             <img src={logoWhiteImg} alt="Letmeask" />
           )}
-          { !user 
-              ? <button className="create-room" onClick={handleCreateRoom}>
-            <img src={googleIconImg} alt="Logo do Google" />
-            Crie sua sala com o Google
-          </button>
-              : <>
+          {!user ? (
+            <button className="create-room" onClick={handleCreateRoom}>
+              <img src={googleIconImg} alt="Logo do Google" />
+              Crie sua sala com o Google
+            </button>
+          ) : (
+            <>
               <div className="separator">Crie uma sala</div>
-                 
+
               <form onSubmit={handleCreateRoom}>
                 <input
                   type="text"
@@ -101,12 +105,10 @@ export function Home() {
                   name=""
                   id=""
                 />
-                <Button type="submit">
-                  Criar sala
-                </Button>
+                <Button type="submit">Criar sala</Button>
               </form>
-              </>
-              }
+            </>
+          )}
           <div className="separator">ou entre em uma sala</div>
           <form onSubmit={handleJoinRoom}>
             <input
