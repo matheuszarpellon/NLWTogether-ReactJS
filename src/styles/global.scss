@@ -7,6 +7,10 @@
 body {
   background: #f8f8f8;
   color: #29292e;
+
+  &.dark {
+    background: #333;
+  }
 }
 
 body, input, button, textarea {

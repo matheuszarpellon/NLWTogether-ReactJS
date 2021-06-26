@@ -3,6 +3,14 @@
   align-items: stretch;
   height: 100vh;
 
+  &.dark {
+    background: #333;
+
+    h1, h2, span, .separator {
+      color: #fff;
+    }
+  }
+
   aside {
     flex: 7;
 
