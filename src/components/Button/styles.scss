@@ -34,3 +34,14 @@
     cursor: not-allowed;
   }
 }
+
+#admin {
+  height: 3.125rem;
+  border-radius: .5rem;
+  font-weight: 500;
+  padding: 0 2rem;
+  background: #fff;
+  border: 0.0625rem solid #835afd;
+  color: #835afd;
+  cursor: pointer;
+}

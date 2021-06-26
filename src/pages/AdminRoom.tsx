@@ -1,8 +1,9 @@
-import { useHistory, useParams } from 'react-router-dom'
+import { useHistory, useParams, Link } from 'react-router-dom'
 
 import checkImg from '../assets/images/check.svg'
 import answerImg from '../assets/images/answer.svg'
 import logoImg from '../assets/images/logo.svg'
+import logoWhiteImg from '../assets/images/logoWhite.svg'
 import deleteImg from '../assets/images/delete.svg'
 
 import { Question } from '../components/Question'
@@ -13,6 +14,7 @@ import { useRoom } from '../hooks/useRoom'
 
 import '../styles/room.scss'
 import { database } from '../services/firebase'
+import { useTheme } from '../hooks/useTheme'
 
 type RoomParams = {
   id: string
@@ -23,6 +25,7 @@ export function AdminRoom() {
   const history = useHistory()
   const params = useParams<RoomParams>()
   const roomId = params.id
+  const {theme, toggleTheme} = useTheme()
 
   const { title, questions } = useRoom(roomId)
 
@@ -53,15 +56,23 @@ export function AdminRoom() {
   }
 
   return (
-    <div id="page-room">
+    <div id="page-room" className={theme}>
       <header>
         <div className="content">
-          <img src={logoImg} alt="letmeask" />
+          {theme === 'light' ? (
+            <Link to={'/'}><img src={logoImg} alt="Letmeask" /></Link>
+          ) : (
+            <Link to={'/'}><img src={logoWhiteImg} alt="Letmeask" /></Link>
+          )}
           <div>
             <RoomCode code={roomId} />
             <Button isOutlined onClick={handleEndRoom}>
               Encerrar Sala
             </Button>
+            { theme === 'light' 
+            ? <Button onClick={toggleTheme}>Dark</Button>
+            : <Button onClick={toggleTheme}>Light</Button>}
+            
           </div>
         </div>
       </header>
@@ -110,6 +121,11 @@ export function AdminRoom() {
               </Question>
             )
           })}
+          <div id="footer" className={theme}>
+            <Link to={`/rooms/${roomId}`}>
+              <button id="admin">Voltar à sala</button>
+            </Link>
+          </div>
         </div>
       </main>
     </div>

@@ -76,8 +76,9 @@ export function Home() {
       </aside>
       <main>
         <div className="main-content">
-          <h1>{theme}</h1>
-          <button onClick={toggleTheme}>Theme</button>
+          { theme === 'light' 
+            ? <Button onClick={toggleTheme}>Dark</Button>
+            : <Button onClick={toggleTheme}>Light</Button>}
           {theme === 'light' ? (
             <img src={logoImg} alt="Letmeask" />
           ) : (

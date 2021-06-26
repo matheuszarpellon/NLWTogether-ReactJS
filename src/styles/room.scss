@@ -25,6 +25,15 @@
     }
   }
 
+  &.dark {
+    background: #333;
+
+    .room-title h1,
+    form .form-footer .user-info > span {
+      color: #fff;
+    }
+  }
+
   main {
     max-width: 800px;
     margin: 0 auto;
@@ -108,5 +117,18 @@
     .question-list {
       margin-top: 2rem;
     }
-  }
+
+    #footer {
+      padding: 1.5rem;
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &.dark{
+        background: #333;
+      }
+    }}
 }
