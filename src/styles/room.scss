@@ -1,5 +1,14 @@
 #page-room {
   min-height: 100vh;
+
+  @media (max-width: 425px) {
+    overflow: hidden;
+    width: 100vw;
+
+    header .content > div button span {
+      display: none;
+    }
+  }
   
   header {
     padding: 1.5rem;
@@ -12,6 +21,10 @@
       justify-content: space-between;
       align-items: center;
 
+      @media (max-width: 425px) {
+        width: 100%;
+      }
+
       > img {
         max-height: 2.8125rem;
       }
@@ -19,6 +32,7 @@
       > div {
         display: flex;
         gap: 1rem;
+        padding: 0 1rem;
 
         button {
           height: 2.5rem;
@@ -39,6 +53,7 @@
   main {
     max-width: 800px;
     margin: 0 auto;
+    padding: 1.5rem;
 
     .room-title {
       margin: 2rem 0 1.5rem;

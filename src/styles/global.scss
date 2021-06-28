@@ -16,3 +16,15 @@ body {
 body, input, button, textarea {
   font: 400 1rem "Roboto", sans-serif;
 }
+
+/* media */
+@media (max-width: 768px) {
+  html{
+  font-size: 93.75%;
+  }
+}
+@media (max-width: 425px) {
+  html{
+  font-size: 87.5%;
+  }
+}
